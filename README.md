@@ -8,6 +8,13 @@ Este projeto faz uso do Laravel 6.20, Sqlite3 e Bootstrap 5.2.
 Lembre-se de rodar com o php >= 7.2 e php < 8.0.
 No linux, para alterar a versão do php use: sudo update-alternatives --config php
 
+## Como rodar este projeto?
+
+- Clone este projeto na sua máquina.
+- Pelo terminal acesse a pasta do projeto.
+- Execute o comando: composer install.
+- Execute o comando: php artisan serve
+
 ## Como entender este projeto
 
 Observe os arquivos na seguinte ordem:
