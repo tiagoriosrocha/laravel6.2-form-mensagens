@@ -1,32 +1,49 @@
-## Tradutor
+## O que é?
 
-Este tradutor faz uso do Laravel 6.20, Bootstrap 5.2 e da RapidAPI para fazer a tradução do texto usando o Google Translator.
+Este projeto exibe mensagens que estão armazenadas em uma tabela no banco de dados (sqlite3 por default) e permite a criação de novas mensagens através de um formulário.
 
-## Visualização do funcionamento
+## Estrutura do Projeto
 
-Este tradutor está funcionando no seguinte [link](https://tradutorgoogle.herokuapp.com/)
+Este projeto faz uso do Laravel 6.20, Sqlite3 e Bootstrap 5.2.
+Lembre-se de rodar com o php >= 7.2 e php < 8.0.
+No linux, para alterar a versão do php use: sudo update-alternatives --config php
 
-## Serviço de Tradução
+## Como entender este projeto
 
-O serviço de tradução (que usa o Google Translate) que o RapidAPI fornece, pode ser acessado através do seguinte link: [google-translate1](https://rapidapi.com/googlecloud/api/google-translate1).
+Observe os arquivos na seguinte ordem:
+- Migration: /database/migrations/2022_11_09_113700_add_mensagem_table.php.
+- Model: /app/Mensagem.php.
+- Seeder: /database/seeds/MensagemSeeder.php. e /database/seeds/DatabaseSeeder.php.
+- Route: /routes/web.php.
+- Controller: /app/Http/Controllers/MensagemController.php.
+- View: /resourses/Views/formulario.blade.php.
 
+## Migration
 
-## Rotas
+Este projeto está fazendo uso de uma migration que cria uma tabela chamada mensagens
+
+## Model
+
+Este projeto tem um Model chamado Mensagem
+
+## Seeder
+
+Este projeto tem um seeder chamado MensagemSeeder que cria 3 tuplas na tabela mensagens no banco de dados
+
+## Route
 
 Há apenas 2 rotas:
-Rota: GET / -> rota que carrega o formulário.
-Rota: POST /traduzir -> recebe os dados do formulário e faz a tradução.
+Rota: GET / -> rota que carrega o formulário exibindo as mensagens já existentes.
+Rota: POST /salvarmensagem -> recebe os dados do formulário e salva no banco.
+
+## Controller
+
+O controller que está operacionalizando a aplicação se chama MensagemController e nele há dois métodos:
+
+carregarFormulario(): método que carrega as mensagens do banco e exibe a view formulário.
+
+salvarNovaMensagem(Request): método que recebe os dados preenchidos no formulário, faz a validação, salva os dados no banco e retorna para a rota "/" .
 
 ## View
 
 Toda interface (com bootostrap) está contida em apenas uma view chamada formulario.blade.php
-
-## Controller
-
-O controller que está operacionalizando a aplicação se chama GoogleTradutorController e nele há três métodos:
-
-carregarLinguagens(): método privado que faz a busca na API a relação de linguagens suportadas.
-
-carregarFormulario(): método público que chama o método anterior para carregar as linguagens e monta o formulário (view) para o usuário.
-
-produzirTraducao(Request): método público que recebe um Request com todos os dados do formulário, faz a tradução via API e retorna novamente o mesmo formulário com os dados da tradução e a relaçãoo das linguagens (método carregarLinguagens). 
